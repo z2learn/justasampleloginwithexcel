@@ -1,4 +1,3 @@
-// public/js/main.js
 function switchTab(tab) {
   document
     .querySelectorAll(".tab")
@@ -28,7 +27,7 @@ document
     const password = document.getElementById("registerPassword").value;
 
     try {
-      const response = await fetch("http://localhost:3000/register", {
+      const response = await fetch(`${window.location.origin}/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -42,6 +41,7 @@ document
         document.getElementById("registerMessage").textContent = data.message;
         document.getElementById("registerMessage").className = "success";
         document.getElementById("registerForm").reset();
+        switchTab("login");
       } else {
         document.getElementById("registerMessage").textContent = data.error;
         document.getElementById("registerMessage").className = "error";
@@ -61,7 +61,7 @@ document
     const password = document.getElementById("loginPassword").value;
 
     try {
-      const response = await fetch("http://localhost:3000/login", {
+      const response = await fetch(`${window.location.origin}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
